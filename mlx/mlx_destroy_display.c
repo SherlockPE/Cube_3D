@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 09:51:41 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/07/01 12:22:53 by flopez-r         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cube3d.h>
+#include "mlx_int.h"
 
-int main(int argc, char const *argv[])
+int	mlx_destroy_display(t_xvar *xvar)
 {
-    (void)argc;
-    (void)argv;
-
-    
-    printf("Hola mundo cube\n");
-    return 0;
+	XCloseDisplay(xvar->display);
 }
