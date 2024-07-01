@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: flopez-r <flopez-r@student.42.fr>          +#+  +:+       +#+         #
+#    By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/02 16:20:06 by flopez-r          #+#    #+#              #
-#    Updated: 2024/06/02 16:20:26 by flopez-r         ###   ########.fr        #
+#    Updated: 2024/07/01 09:51:21 by flopez-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo
+NAME = cube3d
 
 RED =			\033[0;91m
 GREEN =			\033[0;92m
@@ -22,13 +22,16 @@ RESET=			\033[0m
 
 SOURCE	=	main.c
 
-UTILS	= 
+# UTILS	= 
 
-SRC = $(SOURCE) $(UTILS)
+SRC = $(SOURCE) # $(UTILS)
 
+SRC_DIR = src
 OBJ_DIR = obj
+UTILS_DIR = utils
 
-OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+SRC := $(addprefix $(SRC_DIR)/, $(SRC))
+OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 CC = gcc
 INCLUDES= -I includes
@@ -36,6 +39,10 @@ SANITIZE_THREADS=  -fsanitize=thread -g3
 SANITIZE_LEAKS=  -fsanitize=address -g3
 # CFLAGS = -Wall -Wextra -Werror -pthread -O3 $(INCLUDES)
 CFLAGS = -Wall -Wextra -Werror -pthread -O3 $(INCLUDES) $(SANITIZE_THREADS)
+
+print:
+	@echo sources: $(SRC)
+	@echo objects: $(OBJ)
 
 all: $(OBJ_DIR) $(NAME)
 
@@ -51,8 +58,8 @@ $(OBJ_DIR)/%.o: %.c
 $(OBJ_DIR):
 	echo "\n$(YELLOW)Creating object directories ...$(RESET)"
 	mkdir -p $(OBJ_DIR)
-	mkdir -p $(OBJ_DIR)/src
-	mkdir -p $(OBJ_DIR)/utils
+	mkdir -p $(OBJ_DIR)/$(SRC_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
 
 clean:
 	echo "\n$(CYAN)Cleaning objects$(RESET)"
